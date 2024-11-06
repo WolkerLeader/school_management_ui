@@ -119,15 +119,17 @@ function Register () {
         }
         if(isValid) {
             setLoading(true)
+            console.log(name, email, password,gender,birthday, role, phone, unit_name, contract_type, level)
 
             // Thực hiện đăng ký
-            const res = await authService.register(name, email, password, phone,birthday, gender, unit_name, level, contract_type, role)
-
+            const res = await authService.register(name, email, password)
+            console.log(res);
+            
             const resultRegister = document.getElementById('resultRegister')
             resultRegister.innerText = res?.msg ? res?.msg : ''
 
-            if(res?.user) {
-                localStorage.setItem('user', res?.user)
+            if(res?.token) {
+                localStorage.setItem('token', res?.token)
                 window.location.href = '/'
             }
             setLoading(false)
@@ -141,6 +143,7 @@ function Register () {
             input.onblur = handleValidator
             input.onfocus = handleClear
         }
+        console.log(inputs)
 
     }, [])
     
@@ -253,10 +256,9 @@ function Register () {
                                 
                             </div>
                             
+                            <span id="resultRegister" className={cx('result-register')}></span>
                             
                         </form>
-                        <span id="resultRegister" className={cx('result-register')}></span>
-
                         <div className={cx('login__content-btn')}>
                             <button type="submit" onClick = {handleSubmit}>{loading ? <span ><Loading /></span> : 'Đăng ký' }</button>
                         </div>
@@ -266,6 +268,7 @@ function Register () {
                             Bạn đã có tài khoản?
                             <Link to="/login" >Đăng nhập</Link>
                         </p>
+                        <a href='/'>Quên mật khẩu?</a>
                     </footer>
             </div>
         </div>
