@@ -109,14 +109,15 @@ function Register () {
             setLoading(true)
             // Thực hiện đăng ký
             const res = await authService.register(fullName, email, password)
-
+            console.log(res);
+            
             const resultRegister = document.getElementById('resultRegister')
             resultRegister.innerText = res?.msg ? res?.msg : ''
 
-            if(res?.token) {
-                localStorage.setItem('token', res?.token)
-                window.location.href = '/'
-            }
+            // if(res?.token) {
+            //     localStorage.setItem('token', res?.token)
+            //     window.location.href = '/'
+            // }
             setLoading(false)
         }
     }

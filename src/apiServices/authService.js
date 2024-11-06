@@ -1,10 +1,10 @@
 import * as request from '~/utils/request'
 
 export const register = async ( fullName, email, password ) => {
-    console.log(fullName, email ,password)
+    // console.log(fullName, email ,password)
     try {
-        const res = await request.post(`register`, { fullName, email, password })
-        console.log(res)
+        const res = await request.post(`user/register`, { fullName, email, password })
+        // console.log(res)
         return res.data
 
     } catch (error) {
