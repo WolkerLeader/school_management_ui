@@ -123,7 +123,8 @@ function Register () {
 
             // Thực hiện đăng ký
             const res = await authService.register(name, email, password)
-
+            console.log(res);
+            
             const resultRegister = document.getElementById('resultRegister')
             resultRegister.innerText = res?.msg ? res?.msg : ''
 
